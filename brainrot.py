@@ -1,6 +1,9 @@
 import requests
 import json
 from moviepy import VideoFileClip
+from moviepy.video.VideoClip import VideoClip
+from moviepy import *
+
 import textwrap
 import os
 from PIL import Image, ImageDraw, ImageFont
@@ -63,20 +66,15 @@ class BrainRotVideoGenerator:
         # Create multiple text clips with different effects
         main_text = TextClip(
             wrapped_text,
-            fontsize=50,
-            color='white',
-            stroke_color='black',
-            stroke_width=3,
-            font='Arial-Bold'
+            font_size=50,
+            color='white'
         ).set_duration(duration).set_position('center')
-        
-        # Add shadow effect
+                
         shadow_text = TextClip(
-            wrapped_text,
-            fontsize=50,
-            color='black',
-            font='Arial-Bold'
-        ).set_duration(duration).set_position(('center', 'center')).set_opacity(0.3)
+    wrapped_text,
+    font_size=50,
+    color='black'
+).set_duration(duration).set_position(('center', 'center')).set_opacity(0.3)
         
         # Offset shadow slightly
         shadow_text = shadow_text.set_position(lambda t: ('center', 'center'))
@@ -241,8 +239,7 @@ class BrainRotVideoGenerator:
         print(f"Generated content: {content}")
         
         # Create background
-        background = self.get_background_video()
-        
+        background = self.get_random_background_video()        
         # Create text overlay
         text_clip = self.create_text_clip(content, duration=15)
         
@@ -268,14 +265,14 @@ class BrainRotVideoGenerator:
 # Usage example
 if __name__ == "__main__":
     # Initialize the generator
-    GROQ_API_KEY = "your_groq_api_key_here"  # Get from https://console.groq.com/
+    GROQ_API_KEY = "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"  # Get from https://console.groq.com/
     
     generator = BrainRotVideoGenerator(GROQ_API_KEY)
     
     # Generate multiple videos
     for i in range(3):
         video_file = generator.create_video(f"brainrot_video_{i+1}.mp4")
-        print(f"Created: {video_file}")
+        print(f"Created: {video_file}") 
 
 # Additional automation script for posting (basic structure)
 class SocialMediaPoster:
