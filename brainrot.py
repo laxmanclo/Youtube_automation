@@ -265,7 +265,7 @@ class BrainRotVideoGenerator:
 # Usage example
 if __name__ == "__main__":
     # Initialize the generator
-    GROQ_API_KEY = "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"  # Get from https://console.groq.com/
+    GROQ_API_KEY = "."  # Get from https://console.groq.com/
     
     generator = BrainRotVideoGenerator(GROQ_API_KEY)
     
